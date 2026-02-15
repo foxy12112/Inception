@@ -10,6 +10,8 @@ all: create_dirs make_dir_up
 
 build: create_dirs make_dir_up_build
 
+dev: create_dirs make_dir_up_build_dev
+
 down:
 	@docker-compose -f $(DOCKER_COMPOSE_FILE) --env-file $(ENV_FILE) down
 
@@ -37,5 +39,7 @@ make_dir_up:
 	@docker-compose -f $(DOCKER_COMPOSE_FILE) --env-file $(ENV_FILE) up -d
 
 make_dir_up_build:
-	@docker-compose -f $(DOCKER_COMPOSE_FILE) --env-file $(ENV_FILE) up  --build
+	@docker-compose -f $(DOCKER_COMPOSE_FILE) --env-file $(ENV_FILE) up -d --build
 
+make_dir_up_build_dev:
+	@docker-compose -f $(DOCKER_COMPOSE_FILE) --env-file $(ENV_FILE) up --build
