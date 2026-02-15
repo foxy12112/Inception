@@ -3,7 +3,7 @@ set -e
 cd /var/www/html
 
 if [ ! -e /etc/.firstrun ]; then
-	sed -i 's/listen = 127.0.0.1:9000/listen = 9000/g' /etc/php82/php-fpm.d/www.conf
+	sed -i 's/listen = 127.0.0.1:9000/listen = 9000/g' /etc/php83/php-fpm.d/www.conf
 	touch /etc/.firstrun
 fi
 

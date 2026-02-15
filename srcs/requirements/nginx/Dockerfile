@@ -5,8 +5,8 @@ RUN apk update && apk upgrade && apk add --no-cache nginx openssl ca-certificate
 RUN mkdir -p /etc/nginx/ssl
 
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-	-keyout /etc/nginx/ssl/cert.crt \
-	-out /etc/nginx/ssl/cert.key \
+	-keyout /etc/nginx/ssl/cert.key \
+	-out /etc/nginx/ssl/cert.crt \
 	-subj "/C=DE/ST=BW/L=Heilbronn/0=42/CN=ldick.42.fr"
 
 COPY tools/nginx-entrypoint.sh /usr/local/bin/

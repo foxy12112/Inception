@@ -32,6 +32,8 @@ server {
 }
 EOF
 	chmod 600 /etc/nginx/ssl/cert.key
-	chmod 644 /etc/nginx/sll/cert.crt
+	chmod 644 /etc/nginx/ssl/cert.crt
 	touch /etc/.firstrun
 fi
+
+exec nginx -g 'daemon off;'
