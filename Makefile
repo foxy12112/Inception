@@ -8,7 +8,7 @@ name = inception
 
 all: create_dirs make_dir_up
 
-build: create dirs make_dir_up_build
+build: create_dirs make_dir_up_build
 
 down:
 	@docker-compose -f $(DOCKER_COMPOSE_FILE) --env-file $(ENV_FILE) down
