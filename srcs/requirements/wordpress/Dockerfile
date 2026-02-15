@@ -11,6 +11,7 @@ RUN apk add php83-curl php83-dom php83-exif php83-fileinfo php83-pecl-igbinary
 RUN apk add php83-pecl-imagick php83-intl php83-mbstring php83-openssl
 RUN apk add php83-xml php83-zip php83-iconv php83-shmop php83-simplexml php83-sodium
 RUN apk add php83-xmlreader php83-zlib php83-tokenizer
+RUN addgroup -g 101 -S nginx && adduser -u 100 -D -S -G nginx nginx
 
 RUN ln -s /usr/bin/php83 /usr/bin/php
 

@@ -4,15 +4,21 @@ cd /var/www/html
 
 if [ ! -e /etc/.firstrun ]; then
 	sed -i 's/listen = 127.0.0.1:9000/listen = 9000/g' /etc/php83/php-fpm.d/www.conf
+	sed -i 's/^user = nobody/user = nginx/g' /etc/php83/php-fpm.d/www.conf
+	sed -i 's/^group = nobody/group = nginx/g' /etc/php83/php-fpm.d/www.conf
 	echo "memory_limit = 256M" >> /etc/php83/php.ini
 	touch /etc/.firstrun
+fi
+
+if [ -e .firstmount ] && [ ! -f index.php ]; then
+	rm -f .firstmount
 fi
 
 if [ ! -e .firstmount ]; then
 	mariadb-admin ping --protocol=tcp --host=mariadb -u "$MYSQL_USER" --password="$MYSQL_PASSWORD" --wait >/dev/null 2>/dev/null
 	if [ ! -f wp-config.php ]; then
 		echo "Installing WordPress..."
-		wp core download --allow-root || true
+		wp core download --allow-root --force
 		wp config create --allow-root \
 			--dbhost=mariadb \
 			--dbuser="$MYSQL_USER" \
@@ -33,7 +39,11 @@ if [ ! -e .firstmount ]; then
 	else
 		echo "WordPress is already installeed."
 	fi
-	chmod -R 755 /var/www/html/
 	touch .firstmount
 fi
+
+	chown -R nginx:nginx /var/www/html
+	find /var/www/html -type d -exec chmod 755 {} \;
+	find /var/www/html -type f -exec chmod 644 {} \;
+
 exec /usr/sbin/php-fpm83 -F

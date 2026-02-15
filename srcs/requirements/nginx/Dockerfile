@@ -2,6 +2,8 @@ FROM alpine:3.23
 
 RUN apk update && apk upgrade && apk add --no-cache bash curl nginx openssl ca-certificates
 
+RUN addgroup -g 101 -S nginx 2>/dev/null || true && adduser -u 100 -D -S -G nginx nginx 2>/dev/null || true
+
 RUN mkdir -p /etc/nginx/ssl
 
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
