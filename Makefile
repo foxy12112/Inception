@@ -37,5 +37,5 @@ make_dir_up:
 	@docker-compose -f $(DOCKER_COMPOSE_FILE) --env-file $(ENV_FILE) up -d
 
 make_dir_up_build:
-	@docker-compose -f $(DOCKER_COMPOSE_FILE) --env-file $(ENV_FILE) up -d --build
+	@docker-compose -f $(DOCKER_COMPOSE_FILE) --env-file $(ENV_FILE) up  --build
 

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bashl
 set -e
 cd /var/www/html
 
@@ -32,7 +32,8 @@ if [ ! -e .firstmount ]; then
 	else
 		echo "WordPress is already installeed."
 	fi
-	chmod 0+w -R /var/www/html/wp-content
+	chown -R www-data:www-data /var/www/html
+	chmod -R 775 /var/www/html/
 	touch .firstmount
 fi
 exec /usr/sbin/php83-fpm -F
