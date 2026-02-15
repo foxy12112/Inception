@@ -1,9 +1,11 @@
+
 #!/bin/bash
 set -e
 cd /var/www/html
 
 if [ ! -e /etc/.firstrun ]; then
 	sed -i 's/listen = 127.0.0.1:9000/listen = 9000/g' /etc/php83/php-fpm.d/www.conf
+	echo "memory_limit = 256M" >> /etc/php83/php.ini
 	touch /etc/.firstrun
 fi
 
@@ -36,4 +38,4 @@ if [ ! -e .firstmount ]; then
 	chmod -R 775 /var/www/html/
 	touch .firstmount
 fi
-exec /usr/sbin/php83-fpm -F
+exec /usr/sbin/php-fpm83 -F
