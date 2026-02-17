@@ -6,7 +6,7 @@ if [ ! -e /etc/.firstrun ]; then
 server {
 	listen 443 ssl;
 	listen [::]:443 ssl;
-	server_name $DOMAIN_NAME;
+	server_name $DOMAIN_NAME www.$DOMAIN_NAME;
 
 	ssl_certificate /etc/nginx/ssl/cert.crt;
 	ssl_certificate_key /etc/nginx/ssl/cert.key;

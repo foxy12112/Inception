@@ -43,3 +43,5 @@ make_dir_up_build:
 
 make_dir_up_build_dev:
 	@docker-compose -f $(DOCKER_COMPOSE_FILE) --env-file $(ENV_FILE) up --build
+dead: fclean
+	@sudo rm -rf $(DATA_DIR)

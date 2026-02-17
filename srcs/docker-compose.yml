@@ -2,7 +2,7 @@ services:
  mariadb:
   container_name: mariadb
   init: true
-  restart: always
+  restart: unless-stopped
   environment:
    - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
    - MYSQL_USER=${MYSQL_USER}
@@ -19,7 +19,7 @@ services:
  nginx:
   container_name: nginx
   init: true
-  restart: always
+  restart: unless-stopped
   environment:
    - DOMAIN_NAME=${DOMAIN_NAME}
   env_file:
@@ -38,7 +38,7 @@ services:
  wordpress:
   container_name: wordpress
   init: true
-  restart: always
+  restart: unless-stopped
   environment:
    - DOMAIN_NAME=${DOMAIN_NAME}
    - MYSQL_USER=${MYSQL_USER}
