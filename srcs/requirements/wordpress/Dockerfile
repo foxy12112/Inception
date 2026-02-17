@@ -1,4 +1,4 @@
-FROM alpine:3.23
+FROM alpine:3.22
 
 RUN apk update --no-cache
 RUN apk add bash 
@@ -12,8 +12,6 @@ RUN apk add php83-pecl-imagick php83-intl php83-mbstring php83-openssl
 RUN apk add php83-xml php83-zip php83-iconv php83-shmop php83-simplexml php83-sodium
 RUN apk add php83-xmlreader php83-zlib php83-tokenizer
 RUN addgroup -g 101 -S nginx && adduser -u 100 -D -S -G nginx nginx
-
-RUN ln -s /usr/bin/php83 /usr/bin/php
 
 RUN cd /usr/local/bin && curl -o wp -L https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp
 COPY tools/wordpress-entrypoint.sh /usr/local/bin
